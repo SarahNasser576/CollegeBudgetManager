@@ -1,0 +1,1536 @@
+"""A game in which the user takes the role of a college freshman and 
+manages a semesterly budget
+
+Author: Sarah Nasser
+
+Version: 1.0.0 January 22, 2023
+"""
+class CollegeBudgetManager:
+
+    """Specifies the initial budget.
+    """
+    def __init__(self):
+        self.budget = 5000;
+
+    """Writes the string representation of a list.
+
+    Returns a string that contains beginning and ending rectangular brackets
+     and the elements of the list conencted by commas.
+
+    Args:
+        list: the list the program writes the string representation of
+
+    Returns:
+        The string representation of a given list
+    """
+    def listToString(self, list):
+        return "[" + ", ".join(str(i) for i in list) + "]";
+
+    """Appends dresses to a list.
+
+    Args:
+        dresses: the list that the program appends dresses to
+
+    Returns:
+        The list of dresses after all the appending in this method
+    """
+    def addDresses(self, dresses):
+        dresses.append("A simple, boring dress - $5");
+        dresses.append("A pretty non-designer dress - $25");
+        dresses.append("A designer dress - $250");
+
+        return dresses;
+
+    """Appends purses to a list.
+
+    Args:
+        purses: the list that the program appends purses to
+
+    Returns:
+        The list of purses after all the appending in this method
+    """
+    def addPurses(self, purses):
+        purses.append("Boring purse - $5");
+        purses.append("Pretty non-designer purse - $25");
+        purses.append("Designer purse - $210");
+
+        return purses;
+
+    """Appends pants to a list.
+
+    Args:
+        pants: the list that the program appends pants to
+
+    Returns:
+        The list of pants after all the appending in this method
+    """
+    def addPants(self, pants):
+        pants.append("shorts - $18");
+        pants.append("jeans (not ripped) - $20");
+        pants.append("ripped jeans - $25");
+        pants.append("overalls - $30");
+        pants.append("cargo pants - $40");
+        pants.append("Plain, uncomfortable leggings - $5");
+        pants.append("Comfortable, boring leggings - $10");
+        pants.append("Comfortable, quirky leggings - $15");
+        pants.append("Designer leggings - $95");
+        pants.append("The most gorgeous leggings here - $160");
+
+        return pants;
+
+    """Appends shoes to a list.
+
+    Args:
+        shoes: the list that the program appends shoes to
+
+    Returns:
+        The list of shoes after all the appending in this method
+    """
+    def addShoes(self, shoes):
+        shoes.append("sneakers - $20");
+        shoes.append("sandals - $22");
+        shoes.append("heels - $55");
+        shoes.append("boots - $45");
+        shoes.append("ankle boots - $50");
+        shoes.append("combat boots - $60");
+        shoes.append("pumps - $65");
+
+        return shoes;
+
+    """Appends skirts to a list.
+
+    Args:
+        skirts: the list that the program appends skirts to
+
+    Returns:
+        The list of skirts after all the appending in this method
+    """
+    def addSkirts(self, skirts):
+        skirts.append("miniskirt - $35");
+        skirts.append("pleated skirt - $45");
+        skirts.append("pencil skirt - $50");
+        skirts.append("asymmetrical skirt - $65");
+        skirts.append("high waisted skirt - $75");
+        skirts.append("tulip skirt - $55");
+        skirts.append("layered skirt - $40");
+        skirts.append("denim skirt - $30");
+        skirts.append("a designer skirt - $250");
+
+        return skirts;
+
+    """Appends shirts to a list.
+
+    Args:
+        shirts: the list that the program appends shirts to
+
+    Returns:
+        The list of shirts after all the appending in this method
+    """
+    def addShirts(self, shirts):
+        shirts.append("tank top - $15");
+        shirts.append("tube top - $20");
+        shirts.append("t-shirt - $10");
+        shirts.append("off-shoulder top - $35");
+        shirts.append("one-shoulder top - $45");
+        shirts.append("camisole - $40");
+        shirts.append("crop top - $25");
+
+        return shirts;
+
+    """Checks the user input for what dress to buy and decreases 
+    the budget appropriately.
+
+    Asks the user what dress from the list of dresses they want to buy. If
+    the user input is a dress in the list, decrease the budget accordingly
+    and remove the user-inputted dress from the list. Otherwise remind them
+    to type valid input.
+
+    Args:
+        budget: the user's budget
+        dresses: the list of dresses
+
+    Returns:
+        The budget
+    """
+    def buyDress(self, budget, dresses):
+        userInput = input("Which dress do you want to buy? Your options: "
+         + self.listToString(dresses) + ". (Type the whole string)");
+        if(userInput == "A simple, boring dress - $5"):
+            self.budget -= 5;
+            #The user can only buy one copy of each dress.
+            dresses.pop(dresses.index("A simple, boring dress - $5"));
+        elif(userInput == "A pretty non-designer dress - $25"):
+            self.budget -= 25;
+            dresses.pop(dresses.index("A pretty non-designer dress - $25"));
+        elif(userInput == "A designer dress - $250"):
+            self.budget -= 250;
+            dresses.pop(dresses.index("A designer dress - $250"));
+        #Handles the case in which the user types a dress that is not in the 
+        #list of dresses
+        else:
+            print("Invalid input. Type the whole string.");
+        
+        return self.budget;
+
+    """Checks the user input for what purse to buy and decreases 
+    the budget appropriately.
+
+    Asks the user what purse from the list of purses they want to buy. If
+    the user input is a purse in the list, decrease the budget accordingly
+    and remove the user-inputted purse from the list. Otherwise remind them
+    to type valid input.
+
+    Args:
+        budget: the user's budget
+        purses: the list of purses
+
+    Returns:
+        The budget
+    """
+    def buyPurse(self, budget, purses):
+        userInput = input("Which purse do you want to buy? Your options: " 
+        + self.listToString(purses) + ". (Type the whole string)");
+        if(userInput == "Boring purse - $5"):
+            self.budget -= 5;
+            #The user can only buy one copy of each purse.
+            purses.pop(purses.index("Boring purse - $5"));
+        elif(userInput == "Pretty non-designer purse - $25"):
+            self.budget -= 25;
+            purses.pop(purses.index("Pretty non-designer purse - $25"));
+        elif(userInput == "Designer purse - $210"):
+            self.budget -= 210;
+            purses.pop(purses.index("Designer purse - $210"));
+        #Handles the case in which the user types a purse that is not in 
+        #the list of purses
+        else:
+            print("Invalid input. Type the whole string.");
+
+        return self.budget;
+
+    """Checks the user input for what pants to buy and decreases 
+    the budget appropriately.
+
+    Asks the user what pants from the list of pants they want to buy. If
+    the user input in the list, decrease the budget accordingly
+    and remove the user-inputted pants from the list. Otherwise remind them
+    to type valid input.
+
+    Args:
+        budget: the user's budget
+        pants: the list of pants
+
+    Returns:
+        The budget
+    """
+    def buyPants(self, budget, pants):
+        userInput = input("Which pants do you want to buy? Your options: " 
+        + self.listToString(pants) + ". (Type the whole string)");
+        if(userInput == "shorts - $18"):
+            self.budget -= 18;
+            #The user can only buy one copy of each pair of pants.
+            pants.pop(pants.index("shorts - $18"));
+        elif(userInput == "jeans (not ripped) - $20"):
+            self.budget -= 20;
+            pants.pop(pants.index("jeans (not ripped) - $20"));
+        elif(userInput == "ripped jeans - $25"):
+            self.budget -= 25;
+            pants.pop(pants.index("ripped jeans - $25"));
+        elif(userInput == "overalls - $30"):
+            self.budget -= 30;
+            pants.pop(pants.index("overalls - $30"));
+        elif(userInput == "cargo pants - $40"):
+            self.budget -= 40;
+            pants.pop(pants.index("cargo pants - $40"));
+        elif(userInput == "Plain, uncomfortable leggings - $5"):
+            self.budget -= 5;
+            pants.pop(pants.index("Plain, uncomfortable leggings - $5"));
+        elif(userInput == "Comfortable, boring leggings - $10"):
+            self.budget -= 10;
+            pants.pop(pants.index("Comfortable, boring leggings - $10"));
+        elif(userInput == "Comfortable, quirky leggings - $15"):
+            self.budget -= 15;
+            pants.pop(pants.index("Comfortable, quirky leggings - $15"));
+        elif(userInput == "Designer leggings - $95"):
+            self.budget -= 95;
+            pants.pop(pants.index("Designer leggings - $95"));
+        elif(userInput == "The most gorgeous leggings here - $160"):
+            self.budget -= 160;
+            pants.pop(pants.index("The most gorgeous leggings here - $160"));
+        #Handles the case in which the user types a pair of pants that is not
+        #in the list of pants
+        else:
+            print("Invalid input. Type the whole string.");
+        
+        return self.budget;
+
+    """Checks the user input for what shoes to buy and decreases 
+    the budget appropriately.
+
+    Asks the user what shoes from the list of shoes they want to buy. If
+    the user input in the list, decrease the budget accordingly
+    and remove the user-inputted shoes from the list. Otherwise remind them
+    to type valid input.
+
+    Args:
+        budget: the user's budget
+        shoes: the list of shoes
+    Returns:
+        The budget
+    """
+    def buyShoes(self, budget, shoes):
+        userInput = input("Which shoes do you want to buy? Your options: " 
+        + self.listToString(shoes) + ". (Type the whole string)");
+        if(userInput == "sneakers - $20"):
+            self.budget -= 20;
+            #The user can only buy one copy of each pair of shoes.
+            shoes.pop(shoes.index("sneakers - $20"));
+        elif(userInput == "sandals - $22"):
+            self.budget -= 22;
+            shoes.pop(shoes.index("sandals - $22"));
+        elif(userInput == "heels - $55"):
+            self.budget -= 55;
+            shoes.pop(shoes.index("heels - $55"));
+        elif(userInput == "boots - $45"):
+            self.budget -= 45;
+            shoes.pop(shoes.index("boots - $45"));
+        elif(userInput == "ankle boots - $50"):
+            self.budget -= 50;
+            shoes.pop(shoes.index("ankle boots - $50"));
+        elif(userInput == "combat boots - $60"):
+            self.budget -= 60;
+            shoes.pop(shoes.index("combat boots - $60"));
+        elif(userInput == "pumps - $65"):
+            self.budget -= 65;
+            shoes.pop(shoes.index("pumps - $95"));
+        #Handles the case in which the user types a pair of shoes that is not
+        #in the list of shoes
+        else:
+            print("Invalid input. Type the whole string.");
+
+        return self.budget;
+
+    """Checks the user input for what skirt to buy and decreases 
+    the budget appropriately.
+
+    Asks the user what skirt from the list of skirts they want to buy. If
+    the user input is a skirt in the list, decrease the budget accordingly
+    and remove the user-inputted skirt from the list. Otherwise remind them
+    to type valid input.
+
+    Args:
+        budget: the user's budget
+        skirts: the list of skirts
+
+    Returns:
+        The budget
+    """
+    def buySkirt(self, budget, skirts):
+        userInput = input("Which skirt do you want to buy? Your options: " 
+        + self.listToString(skirts) + ". (Type the whole string)");
+        if(userInput == "miniskirt - $35"):
+            self.budget -= 35;
+            #The user can only buy one copy of each skirt.
+            skirts.pop(skirts.index("miniskirt - $35"));
+        elif(userInput == "pleated skirt - $45"):
+            self.budget -= 45;
+            skirts.pop(skirts.index("pleated skirt - $45"));
+        elif(userInput == "pencil skirt - $50"):
+            self.budget -= 50;
+            skirts.pop(skirts.index("pencil skirt - $50"));
+        elif(userInput == "asymmetrical skirt - $65"):
+            self.budget -= 65;
+            skirts.pop(skirts.index("asymmetrical skirt - $65"));
+        elif(userInput == "high waisted skirt - $75"):
+            self.budget -= 75;
+            skirts.pop(skirts.index("high waisted skirt - $75"));
+        elif(userInput == "tulip skirt - $55"):
+            self.budget -= 55;
+            skirts.pop(skirts.index("tulip skirt - $55"));
+        elif(userInput == "layered skirt - $40"):
+            self.budget -= 40;
+            skirts.pop(skirts.index("layered skirt - $40"));
+        elif(userInput == "denim skirt - $30"):
+            self.budget -= 30;
+            skirts.pop(skirts.index("denim skirt - $30"));
+        elif(userInput == "a designer skirt - $250"):
+            self.budget -= 150;
+            skirts.pop(skirts.index("a designer skirt - $250"));
+        #Handles the case in which the user types a skirt that is not in 
+        #the list of skirts
+        else:
+            print("Invalid input. Type the whole string.");
+
+        return self.budget;
+
+    """Checks the user input for what shirt to buy and decreases 
+    the budget appropriately.
+
+    Asks the user what shirt from the list of shirts they want to buy. If
+    the user input is a shirt in the list, decrease the budget accordingly
+    and remove the user-inputted shirt from the list. Otherwise remind them
+    to type valid input.
+
+    Args:
+        budget: the user's budget
+        shirts: the list of shirts
+
+    Returns:
+        The budget
+    """
+    def buyShirt(self, budget, shirts):
+        userInput = input("Which shirt do you want to buy? Your options: " 
+        + self.listToString(shirts) + ". (Type the whole string)");
+        if(userInput == "tank top - $15"):
+            self.budget -= 15;
+            #The user can only buy one copy of each shirt.
+            shirts.pop(shirts.index("tank top - $15"));
+        elif(userInput == "tube top - $20"):
+            self.budget -= 20;
+            shirts.pop(shirts.index("tube top - $20"));
+        elif(userInput == "t-shirt - $10"):
+            self.budget -= 10;
+            shirts.pop(shirts.index("t-shirt - $10"));
+        elif(userInput == "off-shoulder top - $35"):
+            self.budget -= 35;
+            shirts.pop(shirts.index("off-shoulder top - $35"));
+        elif(userInput == "one-shoulder top - $45"):
+            self.budget -= 45;
+            shirts.pop(shirts.index("one-shoulder top - $45"));
+        elif(userInput == "camisole - $40"):
+            self.budget -= 40;
+            shirts.pop(shirts.index("camisole - $40"));
+        elif(userInput == "crop top - $25"):
+            self.budget -= 25;
+            shirts.pop(shirts.index("crop top - $25"));
+        #Handles the case in which the user types a shirt that is not in 
+        #the list of shirts
+        else:
+            print("Invalid input. Type the whole string.");
+
+        return self.budget;
+
+    """Includes logic for the scenario in which the user goes shopping 
+    for new clothes
+
+    Ask the user whether they want to go shopping. If they want to, create 
+    lists of clothing articles, dresses, purses, pants, shoes, skirts, and 
+    shirts. Let the user input what clothing article they want to buy and 
+    then call the appropriate methods for decreasing the budget accordingly.
+    If the user pick a clothing article that is not in the list of clothing
+    articles, print that their input is invalid. If a clothing article is out
+    of stock, pop it from the list. If there are clothing articles left in 
+    stock, ask the user if they want to continue shopping.
+
+    Args:
+        budget: the user's budget
+
+    Returns:
+        The budget
+    """
+    def goShopping(self, budget):
+        userInput = input("At the end your first week of classes, you "
+        + "realize that your classmates's clothes are much cooler than "
+        + "yours. You begin to wonder whether you should buy better "
+        + "clothes. (Type y/n)");
+        #Boolean value that indicates whether there are clothes left for 
+        #the user to buy
+        clothesLeft = True;
+        if(userInput == "y"):
+
+            dresses = [];
+            purses = [];
+            pants = [];
+            shoes = [];
+            skirts = [];
+            shirts = [];
+
+            #Creates the lists of clothes for each clothing article
+            dresses = self.addDresses(dresses);
+            purses = self.addPurses(purses);
+            pants = self.addPants(pants);
+            shoes = self.addShoes(shoes);
+            skirts = self.addSkirts(skirts);
+            shirts = self.addShirts(shirts);
+
+            clothingArticles = ["dresses", "purses", "pants", "shoes", 
+            "skirts", "shirts"];
+            #Boolean value that indicates whether the user wants to 
+            #continue shopping
+            chooseClothes = True;
+            print("You have decided to go shopping, and you are now in a " 
+            + "mall.");
+
+            #User is only instructed to state the clothing article they want 
+            #to buy if there are clothes left and if they want to 
+            #continue shopping.
+            while(chooseClothes and clothesLeft):
+                userInput = input("Your options: " + 
+                self.listToString(clothingArticles) + 
+                ". What do you want to buy? (Type the whole string)");
+                if(userInput == "dresses"):
+                    #For each clothing article the user chooses, decrease 
+                    #the budget accordingly.
+                    self.budget = self.buyDress(budget, dresses);
+                    #If a clothing article is out of stock, pop it from the 
+                    #list of clothing articles.
+                    if(len(dresses) == 0):
+                        clothingArticles.pop(clothingArticles.index("dresses"));
+                elif(userInput == "purses"):
+                    self.budget = self.buyPurse(budget, purses);
+                    if(len(purses) == 0):
+                        clothingArticles.pop(clothingArticles.index("purses"));
+                elif(userInput == "pants"):
+                    self.budget = self.buyPants(budget, pants);
+                    if(len(pants) == 0):
+                        clothingArticles.pop(clothingArticles.index("pants"));
+                elif(userInput == "shoes"):
+                    self.budget = self.buyShoes(budget, shoes);
+                    if(len(shoes) == 0):
+                        clothingArticles.pop(clothingArticles.index("shoes"));
+                elif(userInput == "skirts"):
+                    self.budget = self.buySkirt(budget, skirts);
+                    if(len(skirts) == 0):
+                        clothingArticles.pop(clothingArticles.index("skirts"));
+                elif(userInput == "shirts"):
+                    self.budget = self.buyShirt(budget, shirts);
+                    if(len(shirts) == 0):
+                        clothingArticles.pop(clothingArticles.index("shirts"));
+                #Handles the case in which the user types a clothing article 
+                #that is not in the list
+                else:
+                    print("Invalid input. Type the whole string.");
+                
+                #Each time after the user buys something, state their 
+                #current budget.
+                print("You have $" + str(self.budget) + " left.");
+                #Only ask the user whether they want to continue shopping 
+                #only if there is at least one clothing article that is 
+                #not out of stock
+                if(len(clothingArticles) > 0):
+                    userInput = input("Do you want to continue shopping? "
+                    + "(Type y/n)");
+                    if(userInput == "n"):
+                        chooseClothes = False;
+                else:
+                    clothesLeft = False;
+                    
+        return self.budget;
+
+    """Appends food items to a list.
+
+    Args:
+        foodItems: the list that the program appends food items to
+
+    Returns:
+        The list of food items after all the appending in this method
+    """
+    def addFoodItems(self, foodItems):
+        foodItems.append("apples - $2");
+        foodItems.append("bananas - $3");
+        foodItems.append("strawberries - $4");
+        foodItems.append("lettuce - $5");
+        foodItems.append("carrots - $6");
+        foodItems.append("tomatoes - $8");
+        foodItems.append("ramen - $7");
+        foodItems.append("hot dogs - $12");
+        foodItems.append("chicken nuggets - $10");
+        foodItems.append("rice - $15");
+        foodItems.append("bread - $13");
+        foodItems.append("eggs - $17");
+        foodItems.append("candy - $20");
+        foodItems.append("soda - $22");
+        foodItems.append("water bottles - $25");
+        foodItems.append("milk - $19");
+        foodItems.append("cereal - $16");
+
+        return foodItems;
+
+    """Checks the user input for what food item to buy and decreases 
+    the budget appropriately.
+
+    Asks the user what food item from the list of food items they want to 
+    buy. If the user input is a food item in the list, decrease the budget 
+    accordingly and remove the user-inputted food item from the list. 
+    Otherwise remind them to type valid input.
+
+    Args:
+        budget: the user's budget
+        userInput: the user input
+        foodItems: the list of food items
+
+    Returns:
+        The budget
+    """
+    def chooseFoodItem(self, budget, userInput, foodItems):
+        if(userInput == "apples - $2"):
+            self.budget -= 2;
+            #The user can only buy one copy of each food item.
+            foodItems.pop(foodItems.index("apples - $2"));
+        elif(userInput == "bananas - $3"):
+            self.budget -= 3;
+            foodItems.pop(foodItems.index("bananas - $3"));
+        elif(userInput == "strawberries - $4"):
+            self.budget -= 4;
+            foodItems.pop(foodItems.index("strawberries - $4"));
+        elif(userInput == "lettuce - $5"):
+            self.budget -= 5;
+            foodItems.pop(foodItems.index("lettuce - $5"));
+        elif(userInput == "carrots - $6"):
+            self.budget -= 6;
+            foodItems.pop(foodItems.index("carrots - $6"));
+        elif(userInput == "tomatoes - $8"):
+            self.budget -= 8;
+            foodItems.pop(foodItems.index("tomatoes - $8"));
+        elif(userInput == "ramen - $7"):
+            self.budget -= 7;
+            foodItems.pop(foodItems.index("ramen - $7"));
+        elif(userInput == "hot dogs - $12"):
+            self.budget -= 12;
+            foodItems.pop(foodItems.index("hot dogs - $12"));
+        elif(userInput == "chicken nuggets - $10"):
+            self.budget -= 10;
+            foodItems.pop(foodItems.index("chicken nuggets - $10"));
+        elif(userInput == "rice - $15"):
+            self.budget -= 15;
+            foodItems.pop(foodItems.index("rice - $15"));
+        elif(userInput == "bread - $13"):
+            self.budget -= 13;
+            foodItems.pop(foodItems.index("bread - $13"));
+        elif(userInput == "eggs - $17"):
+            self.budget -= 17;
+            foodItems.pop(foodItems.index("eggs - $17"))
+        elif(userInput == "candy - $20"):
+            self.budget -= 20;
+            foodItems.pop(foodItems.index("candy - $20"));
+        elif(userInput == "soda - $22"):
+            self.budget -= 22;
+            foodItems.pop(foodItems.index("soda - $22"));
+        elif(userInput == "water bottles - $25"):
+            self.budget -= 25;
+            foodItems.pop(foodItems.index("water bottles - $25"));
+        elif(userInput == "milk - $19"):
+            self.budget -= 19;
+            foodItems.pop(foodItems.index("milk - $19"));
+        elif(userInput == "cereal - $16"):
+            self.budget -= 16;
+            foodItems.pop(foodItems.index("cereal - $16"));
+        #Handles the case in which the user types a food item that is not 
+        #in the list of food items
+        else:
+            print("Invalid input. Type the whole string.");
+
+        return self.budget;
+
+    """Includes logic for the scenario in which the user goes grocery shopping
+
+    Create a list of food items. Let the user input what food item they want 
+    to buy, and call the appropriate method to decrease the budget 
+    accordingly. If there are still food items left, ask the user if they 
+    want to continue grocery shopping.
+
+    Args:
+        budget: the user's budget
+
+    Returns:
+        The budget
+    """
+    def buyGroceries(self, budget):
+        print("September is getting to an end, and it is your turn to buy "
+        + "groceries this month.");
+        foodItems = [];
+        #Creates a list of food items
+        foodItems = self.addFoodItems(foodItems);
+        #Boolean value that indicates whether the user wants to continue 
+        #grocery shopping
+        continueBuying = True;
+        #The user continues grocery shopping only if they want to and if 
+        #there are food items left.
+        while(continueBuying and len(foodItems) > 0):
+            userInput = input("Your options: " + self.listToString(foodItems)
+             + ". (Type the whole string)");
+            #Decreases the budget accordingly after the user buys a food item
+            self.budget = self.chooseFoodItem(self.budget, userInput, 
+            foodItems);
+            #Tell the user their current budget before giving them the option
+            #to continue grocery shopping
+            print("Your budget is now $" + str(self.budget) + ".");
+            #If there are food items left, ask the user if they want to 
+            #continue grocery shopping.
+            if(len(foodItems) > 0):
+                userInput = input("Do you want to continue buying groceries? "
+                + "(Type y/n)");
+                if(userInput == "n"):
+                    continueBuying = False;
+    
+        return self.budget;
+
+    """Appends Halloween options to a list.
+
+    Args:
+        halloweenOptions: the list that the program appends 
+        Halloween options to
+
+    Returns:
+        The list of Halloween options after all the appending in this method
+    """
+    def addHalloweenOptions(self, halloweenOptions):
+        halloweenOptions.append("Buy costumes and go trick and treating "
+        + "- $40");
+        halloweenOptions.append("Go trick and treating without costumes - $0");
+        halloweenOptions.append("Eat dinner at a restaurant");
+        halloweenOptions.append("Buy a movie and watch it at home - $20");
+        halloweenOptions.append("Go to a movie theater - $35");
+        halloweenOptions.append("Buy ingredients and make Halloween "
+        + "snacks - $45");
+        halloweenOptions.append("Visit a haunted place - $15");
+
+        return halloweenOptions;
+
+    """Appends restaurants to a list.
+
+    Args:
+        restaurants: the list that the program appends restaurants to
+
+    Returns:
+        The list of restaurants after all the appending in this method
+    """
+    def addRestaurants(self, restaurants):
+        restaurants.append("Fast food restaurant - $20");
+        restaurants.append("All-you-can-eat buffet - $45");
+        restaurants.append("Diner - $15");
+        restaurants.append("Casual dining restaurant - $25");
+        restaurants.append("Fine dining restaurant - $350");
+
+        return restaurants;
+
+    """Includes logic for the scenario in which the user goes to a restaurant.
+
+    Create a list of restaurants and let the user input what restaurant they 
+    want to go to. If the user picks a restaurant that is in the list, 
+    decrease the budget accordingly. Otherwise, remind them to type valid 
+    input and give them another chance.
+
+    Args:
+        budget: the user's budget
+
+    Returns:
+        The budget
+    """
+    def goToRestaurant(self, budget):
+        restaurants = [];
+        #Creates a list of restaurants
+        restaurants = self.addRestaurants(restaurants);
+
+        #Boolean value that indicates whether the user picked a restaurant 
+        #that is in the list of restaurants
+        #Initially assumes that the user did not pick a valid restaurant
+        validRestaurantPicked = False;
+        #This while loop ensures that if the user picks a restaurant that is
+        #not in the list, they will get another chance to pick a valid 
+        #restaurant. However, if the user picks a valid restaurant, they 
+        #will not get another chance.
+        #While loop asks the user to pick a restaurant and then decreases 
+        #the budget accordingly, only while the user had not picked a 
+        #valid restaurant yet.
+        while(not validRestaurantPicked):
+            userInput = input("Which restaurant do you and your friends "
+            + "want to go to? Your options: " + 
+            self.listToString(restaurants) + ". (Type the whole string)");
+            if(userInput in restaurants):
+                #If the chosen restaurant is valid, set value of 
+                #validRestaurantPicked to true so that the user does 
+                #not get another chance.
+                validRestaurantPicked = True;
+                if(userInput == restaurants[0]):
+                    self.budget -= 20;
+                elif(userInput == restaurants[1]):
+                    self.budget -= 45;
+                elif(userInput == restaurants[2]):
+                    self.budget -= 15;
+                elif(userInput == restaurants[3]):
+                    self.budget -= 25;
+                elif(userInput == restaurants[4]):
+                    self.budget -= 350;
+            #Always remind the user to type valid input before giving
+            #them an extra chance.
+            else:
+                print("Invalid input. Type the whole string.");
+            
+        return self.budget;
+
+    """Includes logic for the scenario in which the user decides what
+    to do on Halloween.
+
+    Create a list of Halloween options and let the user input what they 
+    want to do. If the user's choice is in the list, decrease the budget
+    accordingly. Otherwise, remind them to type valid input and give 
+    them another chance.
+
+    Args:
+        budget: the user's budget
+
+    Returns:
+        The budget
+    """
+    def haveFunOnHalloween(self, budget):
+        halloweenOptions = [];
+        #Creates a list of Halloween options
+        halloweenOptions = self.addHalloweenOptions(halloweenOptions);
+        #Boolean value that indicates whether the user picked an option that
+        #is in the list of Halloween options
+        #Initially assumes that the user did not pick a valid option
+        validOptionPicked = False;
+        #This while loop ensures that if the user picks an option that is not 
+        #in the list, they will get another chance to pick a valid Halloween 
+        #option. However, if the user picks a valid option, they will not get 
+        #another chance.
+        #While loop asks the user to pick an option and then decreases the 
+        #budget accordingly, only while the user had not picked a valid 
+        #option yet.
+        while(not validOptionPicked):
+            userInput = input("It is Halloween! What will you and your "
+            + "friends do tonight? Your options: " + 
+            self.listToString(halloweenOptions) + ". (Type the whole string)");
+            if(userInput in halloweenOptions):
+                #If the chosen option is valid, set value of validOptionPicked 
+                #to true so that the user does not get another chance.
+                validOptionPicked = True
+                if(userInput == "Buy costumes and go trick and treating - $40"):
+                    self.budget -= 40;
+                elif(userInput == "Eat dinner at a restaurant"):
+                    self.budget = self.goToRestaurant(self.budget);
+                elif(userInput == "Buy a movie and watch it at home - $20"):
+                    self.budget -= 20;
+                elif(userInput == "Go to a movie theater - $35"):
+                    self.budget -= 35;
+                elif(userInput == "Buy ingredients and make Halloween "
+                + "snacks - $45"):
+                    self.budget -= 45;
+                elif(userInput == "Visit a haunted place - $15"):
+                    self.budget -= 15;
+            #Always remind the user to type valid input before giving 
+            #them an extra chance.
+            else:
+                print("Invalid input. Type the whole string.");
+
+        #Tell the user their current budget after they pay for whatever 
+        #they do on Halloween
+        print("Your budget is now $" + str(self.budget) + ".");
+
+        return self.budget;
+
+    """Includes logic for the scenario in which the user decides whether
+    to buy a new towel.
+
+    Let the user input whether they want to buy a new towel. If they want to,
+    give them options for towels to buy and let them input what towel they 
+    want to buy. If the user picks a towel that is in the provided options, 
+    decrease the budget accordingly. Otherwise, remind them to type valid 
+    input and give them another chance.
+
+    Args:
+        budget: the user's budget
+
+    Returns:
+        The budget
+    """
+    def buyTowel(self, budget):
+        #Gives the user an option of whether to buy new towels
+        userInput = input("Do you want to buy new towels? That will cost $20 "
+        + "to $100. (Type y/n)");
+        if(userInput == "y"):
+            #Boolean value that indicates whether the user picked a towel that 
+            #was one of the two towel options given to them
+            #Initially assumes that the user did not pick a valid towel option
+            validOptionPicked = False;
+            #This while loop ensures that if the user picks a towel that was 
+            #not given to them as an option, they will get another chance to 
+            #pick a valid towel option. However, if the user picks a valid 
+            #option, they will not get another chance.
+            #While loop asks the user to pick a towel and then decreases the 
+            #budget accordingly, only while the user had not picked a valid 
+            #option yet.
+            while(not validOptionPicked):
+                userInput = input("You can pick between these two types of "
+                + "towels. \n \n  A basic towel - $20\n OR \n An expensive, "
+                + "high quality towel - $100. \n (Type the whole string)");
+                if(userInput == "A basic towel - $20" or 
+                userInput == "An expensive, high quality towel - $100"):
+                    #If the chosen towel option is valid, set value of 
+                    #validOptionPicked to true so that the user does not 
+                    #get another chance.
+                    validOptionPicked = True;
+                    if(userInput == "A basic towel - $20"):
+                        self.budget -= 20;
+                    elif(userInput == "An expensive, high quality "
+                    + "towel - $100"):
+                        self.budget -= 100;
+                #Always remind the user to type valid input before giving 
+                #them an extra chance.
+                else:
+                    print("Invalid input. Type the whole string.");
+
+        #Tell the user their current budget after they buy a towel
+        print("Your budget is now $" + str(self.budget) + ".");
+
+        return self.budget;
+
+    """Appends tooth brushes to a list.
+
+    Args:
+        toothbrushes: the list that the program appends tooth brushes to
+
+    Returns:
+        The list of tooth brushes after all the appending in this method
+    """
+    def addToothbrushes(self, toothbrushes):
+        toothbrushes.append("A basic toothbrush - $4");
+        toothbrushes.append("A battery-powered toothbrush - $20");
+        toothbrushes.append("A rechargeable powered toothbrush - $50");
+        toothbrushes.append("An expensive, high quality toothbrush - $350");
+
+        return toothbrushes;
+
+    """Includes logic for the scenario in which the user decides whether to 
+    buy a new tooth brush.
+
+    Let the user input whether they want to buy a new tooth brush. If they 
+    want to, create a list of tooth brushes and let them input what tooth 
+    brush they want to buy. If the user picks a tooth brush that is in the
+    list, decrease the budget accordingly. Otherwise, remind them to type 
+    valid input and give them another chance.
+
+    Args:
+        budget: the user's budget
+
+    Returns:
+        The budget
+    """
+    def buyToothBrush(self, budget):
+        #Gives the user an option of whether to buy a new tooth brush
+        userInput = input("Do you want to buy a new tooth brush? That will "
+        + "cost $4 to $350. (Type y/n)");
+        if(userInput == "y"):
+            toothbrushes = [];
+            #Creates a list of tooth brushes
+            toothbrushes = self.addToothbrushes(toothbrushes);
+            #Boolean value that indicates whether the user picked a tooth 
+            #brush that is in the list of tooth brushes
+            #Initially assumes that the user did not pick a valid tooth brush
+            validOptionPicked = False;
+            #This while loop ensures that if the user picks a tooth brush 
+            #that is not in the list, they will get another chance to pick
+            #a valid tooth brush. However, if the user picks a valid tooth 
+            #brush, they will not get another chance.
+            #While loop asks the user to pick a tooth brush and then decreases
+            #the budget accordingly, only while the user had not picked a 
+            #valid tooth brush yet.
+            while(not validOptionPicked):
+                userInput = input("Your options: " + 
+                self.listToString(toothbrushes) + 
+                ". (Type the whole string)");
+                if(userInput in toothbrushes):
+                    #If the chosen tooth brush is valid, set value of
+                    #validOptionPicked to true so that the user does 
+                    #not get another chance.
+                    validOptionPicked = True;
+                    if(userInput == toothbrushes[0]):
+                        self.budget -= 4;
+                    elif(userInput == toothbrushes[1]):
+                        self.budget -= 20;
+                    elif(userInput == toothbrushes[2]):
+                        self.budget -= 50;
+                    elif(userInput == toothbrushes[3]):
+                        self.budget -= 350;
+                #Always remind the user to type valid input before giving 
+                #them an extra chance.
+                else:
+                    print("Invalid input. Type the whole string.");
+
+        #Tell the user their current budget after they buy a tooth brush
+        print("Your budget is now $" + str(self.budget) + ".");
+
+        return self.budget;
+
+    """Includes logic for the scenario in which the user decides whether 
+    to buy new shower curtains.
+
+    Let the user input whether they want to buy new shower curtains. If 
+    they want to, give them options for shower curtains to buy and let 
+    them input what shower curtains they want to buy. If the user picks 
+    shower curtains that are in the provided options, decrease the budget 
+    accordingly. Otherwise, remind them to type valid input and give 
+    them another chance.
+
+    Args:
+        budget: the user's budget
+
+    Returns:
+        The budget
+    """
+    def buyShowerCurtain(self, budget):
+        #Gives the user an option of whether to buy new shower curtains
+        userInput = input("Do you want to buy new shower curtains? That "
+        + "will cost $25 to $120. (Type y/n)");
+        if(userInput == "y"):
+            #Boolean value that indicates whether the user picked a shower 
+            #curtain that was one of the two shower curtain options 
+            #given to them
+            #Initially assumes that the user did not pick a valid 
+            #shower curtain option
+            validOptionPicked = False;
+            #This while loop ensures that if the user picks a shower curtain 
+            #that was not given to them as an option, they will get another 
+            #chance to pick a valid shower curtain option. However, if the 
+            #user picks a valid option, they will not get another chance.
+            #While loop asks the user to pick a shower curtain and then 
+            #decreases the budget accordingly, only while the user had not 
+            #picked a valid option yet.
+            while(not validOptionPicked):
+                userInput = input("You can pick between these two types of "
+                + "shower curtains. \n \n A basic shower curtain - $25 \n "
+                + "OR \n An expensive, high quality shower curtain - $120. "
+                + "\n (Type the whole string)");
+                if(userInput == "A basic shower curtain - $25" or 
+                userInput == "An expensive, high quality shower curtain "
+                + "- $120"):                                
+                    #If the chosen towel option is valid, set value of 
+                    #validOptionPicked to true so that the user does 
+                    #not get another chance.
+                    #If the chosen shower curtain option is valid, set value
+                    #of validOptionPicked to true so that the user does 
+                    #not get another chance.
+                    validOptionPicked = True;
+                    if(userInput == "A basic shower curtain - $25"):
+                        self.budget -= 25;
+                    elif(userInput == "An expensive, high quality shower "
+                    + "curtain - $120"):
+                        self.budget -= 120;
+                else:
+                    print("Invalid input. Type the whole string.");
+
+        #Tell the user their current budget after they buy shower curtains
+        print("Your budget is now $" + str(self.budget) + ".");
+
+        return self.budget;
+        
+    """Includes logic for the scenario in which the user buys new 
+    bathroom supplies.
+
+    Calls the methods that let the user buy new towels, tooth brushes, 
+    and shower curtains.
+
+    Args:
+        budget: the user's budget
+
+    Returns:
+        The budget
+    """
+    def buyBathroomSupplies(self, budget):
+        print("Eww...your towels, shower curtains, and tooth brushes "
+        + "are getting old.");
+        self.budget = self.buyTowel(self.budget);
+        self.budget = self.buyToothBrush(self.budget);
+        self.budget = self.buyShowerCurtain(self.budget);
+
+        return self.budget;
+
+    """Appends phones to a list.
+
+    Args:
+        phones: the list that the program appends phones to
+
+    Returns:
+        The list of phones after all the appending in this method
+    """
+    def addPhones(self, phones):
+        phones.append("iPhone 15 Pro - $560");
+        phones.append("iPhone 15 - $500");
+        phones.append("iPhone 14 - $340");
+        phones.append("iPhone 13 - $300");
+        phones.append("iPhone 12 - $220");
+        phones.append("Samsung Galaxy A14 5G - $130");
+        phones.append("Samsung Galaxy A54 5G - $250");
+
+        return phones;
+
+    """Checks the user input for what phone they want to buy, and 
+    decreases the budget accordingly.
+
+    Create a list of phones. Ask the user what phone from the list they 
+    want to buy. If the user input is a phone that is in the list, decrease
+    the budget accordingly. Otherwise, remind them to type valid input and 
+    give them another chance.
+
+    Args:
+        budget: the user's budget
+
+    Returns:
+        The budget
+    """
+    def buyPhone(self, budget):
+        phones = [];
+        #Creates a list of phones
+        phones = self.addPhones(phones);
+        #Boolean value that indicates whether the user picked a phone that 
+        #is in the list of phones
+        #Initially assumes that the user did not pick a valid phone
+        validOptionPicked = False;
+        #This while loop ensures that if the user picks a phone that is 
+        #not in the list, they will get another chance to pick a valid 
+        #phone. However, if the user picks a valid phone, they will not
+        #get another chance.
+        #While loop asks the user to pick a phone and then decreases the
+        #budget accordingly, only while the user had not picked a 
+        #valid phone yet.
+        while(not validOptionPicked):
+            userInput = input("Your options for a phone: " + 
+            self.listToString(phones) + 
+            ". (Type the whole string)");
+            if(userInput in phones):
+                #If the chosen phone is valid, set value of validOptionPicked 
+                #to true so that the user does not get another chance.
+                validOptionPicked = True;
+                if(userInput == phones[0]):
+                    self.budget -= 560;
+                elif(userInput == phones[1]):
+                    self.budget -= 500;
+                elif(userInput == phones[2]):
+                    self.budget -= 340;
+                elif(userInput == phones[3]):
+                    self.budget -= 300;
+                elif(userInput == phones[4]):
+                    self.budget -= 220;
+                elif(userInput == phones[5]):
+                    self.budget -= 130;
+                elif(userInput == phones[6]):
+                    self.budget -= 250;
+            #Always remind the user to type valid input before giving 
+            #them an extra chance.
+            else:
+                print("Invalid input. Type the whole string.");
+
+        #Tell the user their current budget after they buy a phone
+        print("Your budget is now $" + str(self.budget) + ".");
+
+        return self.budget;
+
+    """Appends phone cases to a list.
+
+    Args:
+        phoneCases: the list that the program appends phone cases to
+
+    Returns:
+        The list of phone cases after all the appending in this method
+    """
+    def addPhoneCases(self, phoneCases):
+        phoneCases.append("A plastic phone case - $7");
+        phoneCases.append("A high quality phone case - $25");
+        phoneCases.append("A premium phone case - $70");
+
+        return phoneCases;
+
+    """Checks the user input for what phone case they want to buy, and
+    decreases the budget accordingly.
+
+    Ask the user whether they want to buy a phone case. If they want to,
+    create a list of phone cases. Ask the user what phone case from the 
+    list they want to buy. If the user input is a phone case that is in 
+    the list, decrease the budget accordingly. Otherwise, remind them to 
+    type valid input and give them another chance.
+
+    Args:
+        budget: the user's budget
+
+    Returns:
+        The budget
+    """
+    def buyPhoneCase(self, budget):
+        #Gives the user an option of whether to buy a phone case
+        userInput = input("Do you also want to buy a phone case? (Type y/n)");
+        if(userInput == "y"):
+            phoneCases = [];
+            #Creates a list of phone cases
+            phoneCases = self.addPhoneCases(phoneCases);
+            #Boolean value that indicates whether the user picked a phone case
+            #that is in the list of phone cases
+            #Initially assumes that the user did not pick a valid phone case
+            validOptionPicked = False;
+            #This while loop ensures that if the user picks a phone case that 
+            #is not in the list, they will get another chance to pick a valid 
+            #phone case. However, if the user picks a valid phone case, they 
+            #will not get another chance.
+            #While loop asks the user to pick a phone case and then decreases 
+            #the budget accordingly, only while the user had not picked a 
+            #valid phone case yet.
+            while(not validOptionPicked):
+                userInput = input("Your options for a phone case: " + 
+                self.listToString(phoneCases) + 
+                ". (Type the whole string)");
+                if(userInput in phoneCases):
+                    #If the chosen phone case is valid, set value of 
+                    #validOptionPicked to true so that the user does 
+                    #not get another chance.
+                    validOptionPicked = True;
+                    if(userInput == phoneCases[0]):
+                        self.budget -= 7;
+                    elif(userInput == phoneCases[1]):
+                        self.budget -= 25;
+                    elif(userInput == phoneCases[2]):
+                        self.budget -= 70;
+                #Always remind the user to type valid input before giving 
+                #them an extra chance.
+                else:
+                    print("Invalid input. Type the whole string.");
+
+        #Tell the user their current budget after they buy a phone case
+        print("Your budget is now $" + str(self.budget) + ".");
+        
+        return self.budget;
+
+    """Appends laptops to a list.
+
+    Args:
+        laptops: the list that the program appends laptops to
+
+    Returns:
+        The list of laptops after all the appending in this method
+    """
+    def addLaptops(self, laptops):
+        laptops.append("MacBook Air (13 inches) - $650");
+        laptops.append("Macbook Air (15 inches) - $780");
+        laptops.append("Macbook Pro - $1000");
+        laptops.append("Chromebook - $130");
+        laptops.append("Windows - $150");
+
+        return laptops;
+
+    """Checks the user input for what laptop they want to buy, and decreases
+    the budget accordingly.
+
+    Create a list of laptops. Ask the user what laptop from the list they 
+    want to buy. If the user input is a laptop that is in the list, decrease 
+    the budget accordingly. Otherwise, remind them to type valid input and 
+    give them another chance.
+
+    Args:
+        budget: the user's budget
+
+    Returns:
+        The budget
+    """
+    def buyLaptop(self, budget):
+        laptops = [];
+        #Creates a list of laptops
+        laptops = self.addLaptops(laptops);
+        #Boolean value that indicates whether the user picked a laptop that 
+        #is in the list of laptops
+        #Initially assumes that the user did not pick a valid laptop
+        validOptionPicked = False;
+        #This while loop ensures that if the user picks a laptop that is not
+        #in the list, they will get another chance to pick a valid laptop. 
+        #However, if the user picks a valid laptop, they will not get another 
+        #chance.
+        #While loop asks the user to pick a laptop and then decreases the 
+        #budget accordingly, only while the user had not picked a 
+        #valid laptop yet.
+        while(not validOptionPicked):
+            userInput = input("Your options for a laptop: " + 
+            self.listToString(laptops) + 
+            ". (Type the whole string)");
+            if(userInput in laptops):
+                #If the chosen laptop is valid, set value of validOptionPicked
+                #to true so that the user does not get another chance.
+                validOptionPicked = True;
+                if(userInput == laptops[0]):
+                    self.budget -= 650;
+                elif(userInput == laptops[1]):
+                    self.budget -= 780;
+                elif(userInput == laptops[2]):
+                    self.budget -= 1000;
+                elif(userInput == laptops[3]):
+                    self.budget -= 130;
+                elif(userInput == laptops[4]):
+                    self.budget -= 150;
+            #Always remind the user to type valid input before giving them 
+            #an extra chance.
+            else:
+                print("Invalid input. Type the whole string.");
+
+        #Tell the user their current budget after they buy a laptop
+        print("Your budget is now $" + str(self.budget) + ".");
+
+        return self.budget;
+
+    """Includes logic for the scenario in which the user decides whether to
+    go shopping on Black Friday
+
+    Let the user input whether they want to go shopping on Black Friday. If 
+    they want to, give them options to buy a phone, a laptop, neither, or 
+    both. Calls the methods to buy a phone, phone case, and laptop 
+    when appropriate
+
+    Args:
+        budget: the user's budget
+
+    Returns:
+        The budget
+    """
+    def blackFriday(self, budget):
+        #Ask the user whether they want to go shopping on Black Friday
+        userInput = input("It is Black Friday! Do you want to shopping? "
+        + "What you will buy tonight will likely be between $7 to "
+        + "$1,000. (Type y/n)");
+        if(userInput == "y"):
+            #If the user wants to, ask them if they want to buy a phone, 
+            #a laptop, neither or both.
+            userInput = input("You are deciding between a new phone or "
+            + "laptop. Your choices: [Buy phone, Buy laptop, Buy neither, "
+            + "Buy both]. (Type the whole string)");
+            #Handles the case in which the user wants to buy both a phone 
+            #and a laptop
+            if(userInput == "Buy both"):
+                self.budget = self.buyPhone(self.budget);
+                self.budget = self.buyPhoneCase(self.budget);
+                self.budget = self.buyLaptop(self.budget);
+            #Handles the case in which the user only wants to buy a phone
+            elif(userInput == "Buy phone"):
+                self.budget = self.buyPhone(self.budget);
+                self.budget = self.buyPhoneCase(self.budget);
+            #Handles the case in which the user only wants to buy a laptop
+            elif(userInput == "Buy laptop"):
+                self.budget = self.buyLaptop(self.budget);
+
+        return self.budget;
+
+    """Appends coats to a list.
+
+    Args:
+        coats: the list that the program appends coats to
+
+    Returns:
+        The list of coats after all the appending in this method
+    """
+    def addCoats(self, coats):
+        coats.append("A basic, boring coat - $25");
+        coats.append("A pretty, uncomfortable coat - $15");
+        coats.append("A beautiful, comfortable coat - $60");
+        coats.append("A designer coat - $450");
+
+        return coats;
+
+    """Checks the user input for what coat they want to buy, and decreases
+    the budget accordingly.
+
+    Ask the user whether they want to buy a new coat. If they want to, create 
+    a list of coats. Ask the user what coat from the list they want to buy. 
+    If the user input is a coat that is in the list, decrease the budget 
+    accordingly. Otherwise, remind them to type valid input and give them 
+    another chance.
+
+    Args:
+        budget: the user's budget
+
+    Returns:
+        The budget
+    """
+    def buyCoat(self, budget):
+        #Gives the user an option of whether to buy a new coat
+        userInput = input("brrrr December started, and it is getting so "
+        + "cold! You already have a coat from years ago, but do you want "
+        + "a new one? (Type y/n)");
+        if(userInput == "y"):
+            coats = [];
+            #Creates a list of coats
+            coats = self.addCoats(coats);
+            #Boolean value that indicates whether the user picked a coat 
+            #that is in the list of coats
+            #Initially assumes that the user did not pick a valid coat
+            validOptionPicked = False;
+            #This while loop ensures that if the user picks a coat that is 
+            #not in the list, they will get another chance to pick a valid 
+            #coat. However, if the user picks a valid coat, they will not 
+            #get another chance.
+            #While loop asks the user to pick a coat and then decreases the 
+            #budget accordingly, only while the user had not picked a 
+            #valid coat yet.
+            while(not validOptionPicked):
+                userInput = input("Your options: " + 
+                self.listToString(coats) + 
+                ". (Type the whole string)");
+                if(userInput in coats):
+                    #If the chosen coat is valid, set value of 
+                    #validOptionPicked to true so that the user 
+                    #does not get another chance.
+                    validOptionPicked = True;
+                    if(userInput == coats[0]):
+                        self.budget -= 25;
+                    elif(userInput == coats[1]):
+                        self.budget -= 15;
+                    elif(userInput == coats[2]):
+                        self.budget -= 60;
+                    elif(userInput == coats[3]):
+                        self.budget -= 450;
+                #Always remind the user to type valid input before
+                #giving them an extra chance.
+                else:
+                    print("Invalid input. Type the whole string.");
+
+        #Tell the user their current budget after they buy a coat
+        print("Your budget is now $" + str(self.budget) + ".");
+        
+        #The user loses the game if their budget is nonpositive.
+        if(self.budget <= 0):
+            print("You lost the game. You don't have any money left.");
+            exit();
+
+        return self.budget;
+
+    """Appends gifts to a list.
+
+    Args:
+        gifts: the list that the program appends gifts to
+
+    Returns:
+        The list of gifts after all the appending in this method
+    """
+    def addGifts(self, gifts):
+        gifts.append("iPhone - $800");
+        gifts.append("Laptop - $900");
+        gifts.append("A new dress - $200");
+        gifts.append("Makeup - $50");
+        gifts.append("Airpods - $110");
+        gifts.append("A new purse - $250");
+        gifts.append("A board game - $25");
+        gifts.append("Skin care - $35");
+
+        return gifts;
+
+    """Using the user input for what gift they want to buy, decrease 
+    the budget accordingly.
+
+    Ask the user whether they want to buy a new coat. If they want to, 
+    create a list of coats. Ask the user what coat from the list they 
+    want to buy. If the user input is a coat that is in the list, 
+    decrease the budget accordingly. Otherwise, remind them to type 
+    valid input and give them another chance.
+
+    Args:
+        budget: the user's budget
+
+    Returns:
+        The budget
+    """
+    def buyGift(self, budget, gifts, userChoice):
+        #Boolean value that indicates whether the user picked a gift 
+        #that is in the list of gifts
+        #Initially assumes that the user did not pick a valid gift
+        validOptionPicked = False;
+        #This while loop ensures that if the user picks a gift that is not in 
+        #the list, they will get another chance to pick a valid gift. However, 
+        #if the user picks a valid gift, they will not get another chance.
+        #While loop asks the user to pick a gift and then decreases the budget 
+        #accordingly, only while the user had not picked a valid gift yet.
+        while(not validOptionPicked):
+            userInput = input("Your options: " + 
+            self.listToString(gifts) + 
+            "(Type the whole string).");
+            if(userInput in gifts):
+                #If the chosen gift is valid, set value of validOptionPicked 
+                #to true so that the user does not get another chance.
+                validOptionPicked = True;
+                if(userChoice == gifts[0]):
+                    self.budget -= 800;
+                elif(userChoice == gifts[1]):
+                    self.budget -= 900;
+                elif(userChoice == gifts[2]):
+                    self.budget -= 200;
+                elif(userChoice == gifts[3]):
+                    self.budget -= 50;
+                elif(userChoice == gifts[4]):
+                    self.budget -= 110;
+                elif(userChoice == gifts[5]):
+                    self.budget -= 250;
+                elif(userChoice == gifts[6]):
+                    self.budget -= 25;
+                elif(userChoice == gifts[7]):
+                    self.budget -= 35;
+            #Always remind the user to type valid input before giving them 
+            #an extra chance.
+            else:
+                print("Invalid input. Type the whole string.");
+
+        #Tell the user their current budget after they buy a gift
+        print("Your budget is now $" + str(self.budget) + ".");
+
+        return self.budget;
+
+    """Includes logic for the scenario in which the user does Secret Santa
+
+    Let the user choose a gift from a list of gifts. Then decrease their 
+    budget accordingly. If the user's budget is at least 0, they won the 
+    game. Otherwise, they lost the game.
+
+    Args:
+        budget: the user's budget
+
+    Returns:
+        The budget
+    """
+    def secretSanta(self, budget):
+        gifts = [];
+        #Creates a list of gifts
+        gifts = self.addGifts(gifts);
+        userInput = input("You and your friends are doing Secret Santa. You "
+        + "need to buy a gift for your friend Olivia. What will you buy her? "
+        + "Your options: " + self.listToString(gifts) 
+        + ". (Type the whole string)");
+        #Decrease the budget accordingly after the user chooses a gift.
+        self.budget = self.buyGift(self.budget, gifts, userInput);
+        #Tell the user their current budget after they buy a gift
+        print("Your budget is now $" + str(self.budget) + ".");
+        
+        #If the user's budget is nonnegative, they won the game.
+        if(self.budget >= 0):
+            print("You won the game. You haven't ran out of money.");
+        #Otherwise, they lost the game.
+        else:
+            print("You lost the game. You don't have any money left.");
+        exit();
+
+        return self.budget;
+
+    """Sets up the game
+
+    Introduces the game and calls the methods that include the logic 
+    for the scenarios
+    """
+    def main(self):
+        #Introduces the game
+        print("You are now a college student and an independent adult, and " 
+        + "after persuading your parents to allow you to live on your own, "
+        + "you are starting to realize that college life will be really hard. "
+        + "A huge challenge will be having a college budget and making "
+        + "mindful decisions on how to spend your money so that you don't " 
+        + "run out. \n");
+        print("Your parents, fortunately, decide to pay for your tuition, but "
+        + "as your semester goes on, you will need to buy other things. At "
+        + "the beginning of the semester, your parents give you a budget of "
+        + "$5,000, not including your textbooks--these were already taken "
+        + "care of by your parents. But you are in charge of everything "
+        + "else, and you don't want to ask your parents for more money in "
+        + "the middle of the semester. You want them to believe that you "
+        + "are responsible. \n");
+
+        #Calls the methods that include the logic for the scenarios
+        self.budget = self.goShopping(self.budget);
+        self.budget = self.buyGroceries(self.budget);
+        self.budget = self.haveFunOnHalloween(self.budget);
+        self.budget = self.buyBathroomSupplies(self.budget);
+        self.budget = self.blackFriday(self.budget);
+        self.budget = self.buyCoat(self.budget);
+        self.budget = self.secretSanta(self.budget);
+
+if __name__ == "__main__":
+    budgetManager = CollegeBudgetManager();
+    budgetManager.main(); 
